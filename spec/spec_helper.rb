@@ -1,7 +1,8 @@
 require "bundler/setup"
 require "gema"
-require "gema/grupo_alimentos"
 require "gema/lista"
+require "gema/grupo_alimentos"
+require "gema/ig"
 
 
 RSpec.configure do |config|

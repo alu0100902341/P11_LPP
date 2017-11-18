@@ -191,5 +191,50 @@ RSpec.describe Gema do
 
   end
 
+# P9 ------------------------------------------------------------------------------------------------------- Programación funcional
+
+  describe Ig do
+
+	before :each do
+	
+		@glucosa_antes_ingesta = [ 
+                  [ 4.9, 5.3, 5.9, 6.7, 7.2, 7.6, 8.0, 8.2, 8.2, 8.4, 8.3, 8.3, 8.0, 7.5, 7.1, 6.8, 6.8, 6.9, 6.8, 6.3, 6.2, 6.3, 6.2, 6.3, 6.1 ],
+		  [6.3, 5.4, 5.6, 5.7, 6.5, 7.4, 7.9, 7.4, 7.7, 7.9, 7.9, 7.8, 7.8, 7.8, 8.0, 8.5, 9.4, 10.8, 10.5, 9.1, 8.9, 8.3, 7.7, 7.6, 7.5 ]
+                ]
+
+		@g_compota = [ 
+			[ 6.7, 6.5, 6.8, 6.9, 7.0, 7.1, 6.9, 6.9, 6.9, 6.7, 6.9, 7.3, 7.0, 7.0, 7.2, 7.1, 6.8, 7.2, 7.3, 7.0, 6.8, 6.7, 6.8, 6.7, 6.9 ],
+			[ 4.6, 4.8, 5.3, 5.6, 6.1, 6.5, 6.6, 7.0, 7.0, 6.8, 6.4, 6.3, 6.1, 6.1, 6.2, 6.0, 6.1, 6.1, 6.2, 6.3, 6.4, 6.1, 6.1, 5.7, 5.9 ] 
+		]
+
+		@g_yogur = [ 
+			[ 6.1, 6.6, 6.3, 6.3, 6.1, 6.9, 6.8, 6.5, 6.4, 6.9, 6.8, 6.5, 6.3, 6.2, 6.7, 6.2, 5.9, 5.8, 5.8, 5.8, 5.8, 5.8, 5.9, 6.2, 6.4 ],
+			[ 4.9, 4.9, 5.2, 5.8, 6.5, 7.0, 7.2, 7.3, 7.3, 6.6, 6.2, 6.1, 6.0, 6.1, 5.9, 5.9, 5.9, 5.9, 5.8, 5.8, 5.5, 5.5, 5.6, 5.9, 5.9 ] 
+		]
+
+		@g_chocolate = [ 
+			[ 6.5, 6.5, 6.7, 6.5, 6.5, 6.8, 6.7, 6.2, 6.5, 7.2, 6.9, 7.0, 6.3, 6.2, 6.1, 5.9, 5.8, 6.1, 6.7, 6.7, 6.6, 6.7, 6.9, 7.2, 7.1 ],
+			[ 4.6, 4.6, 4.7, 4.7, 4.8, 4.7, 4.8, 4.8, 4.6, 4.4, 4.7, 4.7, 4.8, 4.7, 5.2, 5.9, 5.9, 5.7, 5.4, 5.3, 5.1, 4.8, 4.8, 4.9, 5.9 ] 
+		]
+
+		@ig_compota = Ig.new("Compota", @g_compota, @glucosa_antes_ingesta)
+		@ig_yogur = Ig.new("Yogur", @g_yogur, @glucosa_antes_ingesta)
+		@ig_chocolate = Ig.new("Chocolate", @g_chocolate, @glucosa_antes_ingesta)
+	end
+
+	it "Posee los atributos nombre, array_glucosa_alimento, array_glucosa" do
+		expect(@ig_compota.nombre_alimento).to eq("Compota")
+		expect(@ig_compota.array_glucosa_alimento).to eq(@g_compota)
+		expect(@ig_compota.array_glucosa_antes).to eq(@glucosa_antes_ingesta)
+	end
+
+	ig "IG de los distintos alimentos" do
+		expect(@ig_compota.calc_ig).to eq(51.95881131329113)
+		expect(@ig_yogur.calc_ig).to eq(41.1668067642405)
+		expect(@ig_chocolate.calc_ig).to eq(15.752571202531657)
+	end
+
+  end
+
 
 end
