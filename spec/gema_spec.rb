@@ -228,10 +228,10 @@ RSpec.describe Gema do
 		expect(@ig_compota.array_glucosa_antes).to eq(@glucosa_antes_ingesta)
 	end
 
-	ig "IG de los distintos alimentos" do
-		expect(@ig_compota.calc_ig).to eq(51.95881131329113)
-		expect(@ig_yogur.calc_ig).to eq(41.1668067642405)
-		expect(@ig_chocolate.calc_ig).to eq(15.752571202531657)
+	it "IG de los distintos alimentos" do
+		expect(@ig_compota.indice).to eq(52.02088647959183)
+		expect(@ig_yogur.indice).to eq(41.19100765306122)
+		expect(@ig_chocolate.indice).to eq(14.95037468112246)
 	end
 
   end
