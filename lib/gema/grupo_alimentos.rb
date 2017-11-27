@@ -17,7 +17,6 @@ attr_reader :nombre_gp
 
 		"Grupo: #{@nombre_gp}"
 		super
-
 	end
 
 	def <=>(other) #1 if self>other; 0 if self==other; -1 if self<other
