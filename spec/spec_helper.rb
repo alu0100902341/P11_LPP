@@ -3,6 +3,9 @@ require "gema"
 require "gema/lista"
 require "gema/grupo_alimentos"
 require "gema/ig"
+require "benchmark"
+require "coveralls"
+Coveralls.wear!
 
 
 RSpec.configure do |config|
