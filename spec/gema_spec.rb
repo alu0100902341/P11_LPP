@@ -298,64 +298,83 @@ RSpec.describe Gema do
 	end
 
 	it "Ordenar por kcal usando un for" do
-		
-		resultado = @array_alimentos
-		
-		i = 0
-		pos = 0
 	
-		while i < resultado.length-1 do
-			menor = resultado[i]
-			pos = i
-			j = 1+i
-			while j < resultado.length do
-				if resultado[j] < menor
-					menor = resultado[j]
-					pos = j
-				end
-			j +=1
-			end
-		resultado[pos] = resultado[i]
-		resultado[i] = menor
-		i +=1
+		time = Benchmark.measure do
 
-		end	
+			resultado = @array_alimentos
+	
+			i = 0
+			pos = 0
+
+			while i < resultado.length-1 do
+				menor = resultado[i]
+				pos = i
+				j = 1+i
+				while j < resultado.length do
+					if resultado[j] < menor
+						menor = resultado[j]
+						pos = j
+					end
+				j +=1
+				end
+			resultado[pos] = resultado[i]
+			resultado[i] = menor
+			i +=1
+
+			end	
+	
+			expect(resultado).to eq(@array_ordenado)
+
+		end
 		
-		expect(resultado).to eq(@array_ordenado)
+		puts "For: #{time}"
 
 	end
 
 	it "Ordenar por kcal usando each" do
 	
-		resultado = [@array_alimentos[0]]
-		@array_alimentos.delete_at(0)
-		
-		@array_alimentos.each do |i|
+		time = Benchmark.measure do
 
-			resultado.each_with_index do |j,index|
+			resultado = [@array_alimentos[0]]
+			@array_alimentos.delete_at(0)
+		
+			@array_alimentos.each do |i|
+
+				resultado.each_with_index do |j,index|
 			
-				if i <= j
-					resultado.insert(index,i)
-					break
-				elsif index == resultado.size-1
-					resultado.insert(index+1, i)
-					break
-				end
+					if i <= j
+						resultado.insert(index,i)
+						break
+					elsif index == resultado.size-1
+						resultado.insert(index+1, i)
+						break
+					end
 
-			end	
+				end	
 		
-		end
+			end
 	
-		expect(resultado).to eq(@array_ordenado)
+			expect(resultado).to eq(@array_ordenado)
+
+		end
+
+		puts "Each: #{time}"
 
 	end
 
 	it "Ordenar por kcal usando sort" do
 
-		resultado = @array_alimentos.sort
-		expect(resultado).to eq(@array_ordenado)
+		time = Benchmark.measure do
+
+			resultado = @array_alimentos.sort
+			expect(resultado).to eq(@array_ordenado)
+
+		end
+		
+		puts "Sort: #{time}"
 
 	end
+
 
   end
 # [ Tomate(19.8) < Calabaza(24.5) < Cebolla(31.1) < Manzana(54.4) < Pera(55.5) < Leche(61.2) < 
