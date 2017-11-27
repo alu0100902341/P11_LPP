@@ -350,6 +350,13 @@ RSpec.describe Gema do
 
 	end
 
+	it "Ordenar por kcal usando sort" do
+
+		resultado = @array_alimentos.sort
+		expect(resultado).to eq(@array_ordenado)
+
+	end
+
   end
 # [ Tomate(19.8) < Calabaza(24.5) < Cebolla(31.1) < Manzana(54.4) < Pera(55.5) < Leche(61.2) < 
 #	Yogurt(69) < Papas(70.5) < Bacalao(74.4) < Plátanos(92.2) < Ternera(112.3) <
