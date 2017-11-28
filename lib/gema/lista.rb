@@ -6,11 +6,13 @@ end
 class Lista
 
 include Enumerable
-attr_accessor :head, :tail
+include Comparable
+attr_accessor :head, :tail, :size
 
   def initialize	
 	@head = nil
 	@tail = nil
+	@size = 0
   end
 
   def is_empty?
@@ -24,7 +26,8 @@ attr_accessor :head, :tail
   end
 
   def push_back(val)
-
+	
+	@size += 1
 	if (is_empty?)
 		@head = Nodo.new(val, nil, nil)
 		@tail = @head
@@ -39,6 +42,8 @@ attr_accessor :head, :tail
 
   def pop_front
 	
+
+	@size -= 1
 	if (!is_empty?)
 		value = @head.value
 		@head = @head.next
@@ -50,6 +55,7 @@ attr_accessor :head, :tail
 
   def pop
 
+	@size -= 1
 	if (!is_empty?)
 		value = @tail.value
 		@tail = @tail.prev
@@ -69,7 +75,58 @@ attr_accessor :head, :tail
 
   end
 
+  def [](key)
 
+	if (key == 0)
+		return head.value
+	elsif key == size
+		return tail.value
+	end
+
+	aux = @head	
+	for i in 0..key-1
+		aux = aux.next		
+	end
+
+	return aux.value
+	
+  end
+
+  def []=(key,val)
+
+	if (key == 0)
+		head.value = val
+	elsif key == size
+		tail.value = val
+	end
+
+	aux = @head	
+	for i in 0..key-1
+		aux = aux.next		
+	end
+
+	aux.value = val
+
+  end
+
+  def <=>(other)
+
+	comparison = 0
+	aux1 = self.head
+	aux2 = other.head
+	for i in 0..size-1
+		comparison = aux1.value <=> aux2.value
+		if comparison == 0
+			aux1 = aux1.next
+			aux2 = aux2.next
+		else
+			break
+		end
+	end
+	
+	return comparison
+
+  end
 
 end
 

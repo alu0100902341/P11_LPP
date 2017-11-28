@@ -295,9 +295,55 @@ RSpec.describe Gema do
 		Grupo_alimento.new( @grupos[3], ["Mantequilla", 0.7, 0.0, 83.2]),
 		Grupo_alimento.new( @grupos[3], ["Aceite de oliva", 0.0, 0.2, 99.6])]
 
+		@lista_alimentos = Lista.new()
+
+		for i in @array_alimentos
+			@lista_alimentos.push_back(i)
+		end
+
+		@lista_ordenada = Lista.new()
+
+		for i in @array_ordenado
+			@lista_ordenada.push_back(i)
+		end
+
 	end
 
-	it "Ordenar por kcal usando un for" do
+	it "Ordenar por kcal usando un for con lista" do
+	
+		time = Benchmark.measure do
+
+			resultado = @lista_alimentos
+	
+			i = 0
+			pos = 0
+
+			while i < resultado.size-1 do
+				menor = resultado[i]
+				pos = i
+				j = 1+i
+				while j < resultado.size do
+					if resultado[j] < menor
+						menor = resultado[j]
+						pos = j
+					end
+				j +=1
+				end
+			resultado[pos] = resultado[i]
+			resultado[i] = menor
+			i +=1
+
+			end	
+	
+			expect(resultado).to eq(@lista_ordenada)
+
+		end
+		
+		puts "For(lista): #{time}"
+
+	end
+
+	it "Ordenar por kcal usando un for con arrays" do
 	
 		time = Benchmark.measure do
 
@@ -306,11 +352,11 @@ RSpec.describe Gema do
 			i = 0
 			pos = 0
 
-			while i < resultado.length-1 do
+			while i < resultado.size-1 do
 				menor = resultado[i]
 				pos = i
 				j = 1+i
-				while j < resultado.length do
+				while j < resultado.size do
 					if resultado[j] < menor
 						menor = resultado[j]
 						pos = j
@@ -327,7 +373,7 @@ RSpec.describe Gema do
 
 		end
 		
-		puts "For: #{time}"
+		puts "For(array): #{time}"
 
 	end
 
@@ -361,6 +407,8 @@ RSpec.describe Gema do
 		puts "Each: #{time}"
 
 	end
+
+
 
 	it "Ordenar por kcal usando sort" do
 

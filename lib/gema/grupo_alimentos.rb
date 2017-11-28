@@ -36,4 +36,5 @@ attr_reader :nombre_gp
 		return comparison
 
 	end
+
 end
