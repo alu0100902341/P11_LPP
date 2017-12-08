@@ -423,8 +423,6 @@ RSpec.describe Gema do
 
 	end
 
-
-  end
 # [ Tomate(19.8) < Calabaza(24.5) < Cebolla(31.1) < Manzana(54.4) < Pera(55.5) < Leche(61.2) < 
 #	Yogurt(69) < Papas(70.5) < Bacalao(74.4) < Plátanos(92.2) < Ternera(112.3) <
 #	Pollo(132.8) < Cerdo(142.7) < Salmón(202) < Atún(225.5) < Huevo(231.9) < 
@@ -451,6 +449,59 @@ RSpec.describe Gema do
 #		    res_index+=1
 #		end
 #	end
+
+
+  end
+
+# P11 ---------------------------------------------------------------------
+
+
+  describe "DSL" do
+
+
+
+
+	before :each do
+
+		@grupos = ['Huevos, lácteos y helados', 'Carnes y derivados','Pescados y mariscos', 'Alimentos grasos', 'Alimentos ricos en carbohidratos', 'Verduras y Hortalizas', 'Frutas']
+
+		#puts "#{@grupos[0]}"
+
+		@array_ordenado = [ Grupo_alimento.new( @grupos[5], ["Tomate", 1.0, 3.5, 0.2] ),
+		Grupo_alimento.new( @grupos[5], ["Calabaza", 1.1, 4.8, 0.1]),
+		Grupo_alimento.new( @grupos[5], ["Cebolla", 1.3, 5.8, 0.3]),
+		Grupo_alimento.new( @grupos[6], ["Manzana", 0.3, 12.4, 0.4]),
+		Grupo_alimento.new( @grupos[6], ["Pera", 0.5, 12.7, 0.3]),
+		Grupo_alimento.new( @grupo, ["Leche de vaca", 3.3, 4.8, 3.2]),
+		Grupo_alimento.new( @grupo, ["Yogurt", 3.8, 4.9, 3.8]),
+		Grupo_alimento.new( @grupos[4], ["Papas", 2.0, 15.4, 0.1]),
+		Grupo_alimento.new( @grupos[2], ["Bacalao", 17.7, 0.0, 0.4]),
+		Grupo_alimento.new( @grupos[6], ["Plátanos", 1.2, 21.4, 0.2]),
+		Grupo_alimento.new( @grupos[1], ["Ternera", 21.1, 0.0, 3.1]),
+		Grupo_alimento.new( @grupos[1], ["Pollo", 20.6, 0.0, 5.6]),
+		Grupo_alimento.new( @grupos[1], ["Cerdo", 21.5, 0.0, 6.3]),
+		Grupo_alimento.new( @grupos[2], ["Salmón", 19.9, 0.0, 13.6]),
+		Grupo_alimento.new( @grupos[2], ["Atún", 21.5, 0.0, 15.5]),
+		Grupo_alimento.new( @grupo, ["Huevo frito", 14.1, 0.0, 19.5]),
+		Grupo_alimento.new( @grupos[4], ["Lentejas", 23.5, 52.0, 1.4]),
+		Grupo_alimento.new( @grupos[4], ["Arroz", 6.8, 77.7, 0.6]),
+		Grupo_alimento.new( @grupos[4], ["Azúcar", 0.0, 99.8, 0.0]),
+		Grupo_alimento.new( @grupos[3], ["Chocolate", 5.3, 47.0, 30.0]),
+		Grupo_alimento.new( @grupos[3], ["Mantequilla", 0.7, 0.0, 83.2]),
+		Grupo_alimento.new( @grupos[3], ["Aceite de oliva", 0.0, 0.2, 99.6])]
+
+		dsl = DSL.new
+
+	end
+
+	it "Clase DSL debe estar creada." do
+	
+		dsl = DSL.new
+
+	end	
+	
+  end
+
 
 end
 
