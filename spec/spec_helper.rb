@@ -6,6 +6,7 @@ require "gema/lista"
 require "gema/grupo_alimentos"
 require "gema/ig"
 require "benchmark"
+require "gema/plato"
 
 
 RSpec.configure do |config|
