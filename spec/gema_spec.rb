@@ -499,11 +499,13 @@ RSpec.describe Gema do
 	end
 
 	it "Clase DSL debe estar creada." do
-	
 		dsl = DSL.new
-
 	end	
 	
+	it "Clase Plato debe estar creada." do
+		dsl = Plato.new("Lengejas con arroz, salsa de tomate, huevo y plátano a la plancha.")
+	end		
+
   end
 
 

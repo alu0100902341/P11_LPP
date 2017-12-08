@@ -2,7 +2,7 @@ class Plato
 
 attr_accessor :nombre, :vegetales, :frutas, :cereales, :proteinas, :aceites
 
-  def initialize(nombre, prot, glu, lip)	
+  def initialize(nombre)	
 
 	@nombre = nombre
 
