@@ -458,7 +458,11 @@ RSpec.describe Gema do
 
   describe "DSL" do
 
-
+	class DSL
+		def build object, &code
+			object.instance_eval &code
+		end
+	end
 
 
 	before :each do
