@@ -1,3 +1,5 @@
+Ingrediente = Struct.new(:nombre, :porcion)
+
 class Plato
 
 attr_accessor :nombre, :vegetales, :frutas, :cereales, :proteinas, :aceites
@@ -6,11 +8,11 @@ attr_accessor :nombre, :vegetales, :frutas, :cereales, :proteinas, :aceites
 
 	@nombre = nombre
 
-	@vegetales = Hash.new	
-	@frutas = Hash.new
-	@cereales = Hash.new
-	@proteinas = Hash.new
-	@aceites = Hash.new
+	@vegetales = []	
+	@frutas = []
+	@cereales = []
+	@proteinas = []
+	@aceites = []
 
   end
 

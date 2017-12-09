@@ -458,6 +458,8 @@ RSpec.describe Gema do
 
   describe "DSL" do
 
+	Ingrediente = Struct.new(:nombre, :porcion)
+
 	class DSL
 		def build object, &code
 			object.instance_eval &code
@@ -494,7 +496,6 @@ RSpec.describe Gema do
 		Grupo_alimento.new( @grupos[3], ["Mantequilla", 0.7, 0.0, 83.2]),
 		Grupo_alimento.new( @grupos[3], ["Aceite de oliva", 0.0, 0.2, 99.6])]
 
-		dsl = DSL.new
 
 	end
 
@@ -504,7 +505,64 @@ RSpec.describe Gema do
 	
 	it "Clase Plato debe estar creada." do
 		dsl = Plato.new("Lengejas con arroz, salsa de tomate, huevo y plátano a la plancha.")
-	end		
+	end
+
+	
+# 1 pieza = 15 gramos
+# 1 pieza pequeña = 10 gramos
+# 1 cucharada = 4 gramos
+# 1 cucharón = 8 gramos
+# 1 taza 30 gramos
+
+
+	it "Valor nutricional del plato" do
+
+		dsl = DSL.new
+		plato = Plato.new("Lentejas con arroz, salsa de tomate, huevo y plátano a la plancha")	
+
+		dsl.build(plato) do
+
+
+			vegetales.push(Ingrediente.new("Tomate", :porcion => "2 piezas pequeñas"))
+		
+			frutas.push(Ingrediente.new("Plátano", :gramos => "20"))
+
+			cereales.push(Ingrediente.new("Arroz", :porcion => "1 taza"))
+
+			proteinas.push(Ingrediente.new("Lentejas", :porcion => "1/2 cucharón"))
+
+			proteinas.push(Ingrediente.new("Huevo", :porcion => "1 pieza"))
+
+			aceites.push(Ingrediente.new("Aceite de oliva", :porcion => "1/2 cucharada"))
+
+		end
+
+		expect(plato.vegetales[0]).to eq(Ingrediente.new("Tomate", :porcion => "2 piezas pequeñas"))
+		
+		expect(plato.frutas[0]).to eq(Ingrediente.new("Plátano", :gramos => "20"))
+
+		expect(plato.cereales[0]).to eq(Ingrediente.new("Arroz", :porcion => "1 taza"))
+
+		expect(plato.proteinas[0]).to eq(Ingrediente.new("Lentejas", :porcion => "1/2 cucharón"))
+
+		expect(plato.proteinas[1]).to eq(Ingrediente.new("Huevo", :porcion => "1 pieza"))
+
+		expect(plato.aceites[0]).to eq(Ingrediente.new("Aceite de oliva", :porcion => "1/2 cucharada"))
+
+		alimento = [Alimento.new("Tomate", 1.0, 3.5, 0.2), Alimento.new("Plátanos", 1.2, 21.4, 0.2), Alimento.new("Arroz", 6.8, 77.7, 0.6), Alimento.new("Lentejas", 23.5, 52.0, 1.4), Alimento.new("Huevo", 3.3, 4.8, 3.2), Alimento.new("Aceite de oliva", 0.0, 0.2, 99.6)]
+
+		p "#{plato.nombre}"	
+		p "============================================="	
+		p "Composición nutricional"
+
+		p "#{alimento[0].nombre}                 #{alimento[0].glucidos} #{alimento[0].proteinas} #{alimento[0].lipidos} #{alimento[0].kcal_*20}"
+		p "#{alimento[1].nombre}               #{alimento[1].glucidos} #{alimento[1].proteinas} #{alimento[1].lipidos} #{alimento[1].kcal_*20}"
+		p "#{alimento[2].nombre}                  #{alimento[2].glucidos} #{alimento[2].proteinas} #{alimento[2].lipidos} #{alimento[2].kcal_*30}"
+		p "#{alimento[3].nombre}               #{alimento[3].glucidos} #{alimento[3].proteinas} #{alimento[3].lipidos} #{alimento[3].kcal_*4}"
+		p "#{alimento[4].nombre}                  #{alimento[4].glucidos} #{alimento[4].proteinas} #{alimento[4].lipidos} #{alimento[4].kcal_*15}"
+		p "#{alimento[5].nombre}        #{alimento[5].glucidos} #{alimento[5].proteinas} #{alimento[5].lipidos} #{alimento[5].kcal_*2}"
+
+	end
 
   end
 
